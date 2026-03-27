@@ -1,0 +1,374 @@
+@font-face {
+    font-family: 'Arial Narrow';
+    src: local('Arial Narrow');
+    src: url('https://www.paktestsolution.com/fonts/ARIALN.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Jameel Noori Nastaleeq';
+    src: local('Jameel Noori Nastaleeq');
+    src: url('https://www.paktestsolution.com/fonts/Jameel Noori Nastaleeq.ttf') format('truetype');
+}
+
+.no-print, .no-print * {
+    display: none !important;
+}
+
+/*Normal Questions CSS*/
+.UrduDiv {
+    line-height: 1;
+    color: #000;
+    font-family: 'Arial Narrow','Jameel Noori Nastaleeq';
+}
+
+.EnglishDiv {
+    float: left;
+    direction: ltr;
+    font-size: 15pt;
+    font-weight: 500;
+    line-height: 1;
+    color: #000;
+    position: relative;
+    font-family: 'Arial Narrow','Times New Roman',Arial;
+}
+
+.UrduDiv p {
+    float: right;
+    direction: rtl;
+    font-size: 16pt;
+    line-height: 1;
+    color: #000;
+    font-family: 'Arial Narrow','Jameel Noori Nastaleeq';
+    font-weight: 700;
+    word-spacing: -4.5px;
+}
+
+.EnglishDiv p {
+    float: inherit;
+}
+
+.UrduDiv span {
+    float: right;
+    direction: rtl;
+    font-size: 16pt;
+    line-height: 1;
+    color: #000;
+    font-family: 'Arial Narrow','Jameel Noori Nastaleeq';
+    font-weight: bold;
+}
+
+.EnglishDiv span {
+    float: left;
+    font-weight: bold;
+}
+
+.QuestionType ul {
+    list-style-position: inside;
+}
+
+    .QuestionType ul li {
+        width: 25%;
+        display: inline-block;
+        font-size: 16pt;
+        font-family: 'Jameel Noori Nastaleeq','Arial Narrow';
+        color: #000;
+        line-height: 1;
+    }
+
+/*Table MCQ'S Alignment CSS*/
+.TblUrduDiv p {
+    float: right;
+    direction: rtl;
+    font-size: 16pt;
+    line-height: 1;
+    font-weight: 700;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Jameel Noori Nastaleeq','Arial Narrow';
+}
+
+.TblEnglishDiv p {
+    float: left;
+    direction: ltr;
+    font-size: 15pt;
+    line-height: 1;
+    font-weight: 500;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Arial Narrow','Times New Roman',Arial;
+}
+
+.TblUrduDiv span {
+    float: right;
+    direction: rtl;
+    font-size: 16pt;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Jameel Noori Nastaleeq','Arial Narrow';
+}
+
+.TblEnglishDiv span {
+    float: left;
+    direction: ltr;
+    font-size: 15pt;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Arial Narrow','Times New Roman',Arial;
+}
+
+.QuestionType table p {
+    overflow: visible;
+    font-size: 15pt;
+    line-height: 1;
+    color: #000;
+    font-weight:500;
+    padding:5px 0px 5px 0px;
+}
+
+.QuestionType table span {
+    overflow: visible;
+    font-size: 15pt;
+    line-height: 1;
+    color: #000;
+    padding:5px 0px 5px 0px;
+}
+
+.QuestionType table tr {
+    font-weight: 500;
+    color: #000;
+}
+
+.QuestionType table td {
+    padding: 3px;
+    color: #000;
+}
+
+.QuestionType {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.TwoWordsType {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.ThreeWordsType {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.FiveWordsType {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.ParagraphsType p {
+    line-height: 1.5;
+    text-align: justify;
+    float: none;
+    color: #000;
+}
+
+.ParagraphsType span {
+    line-height: 1.5;
+    color: #000;
+    font-weight: bold;
+}
+
+.QuestionType table p {
+    margin: 0;
+    max-height: 3em;
+    overflow: hidden;
+    margin: 2px;
+}
+
+
+
+
+.McqType {
+    width: 25%;
+    display: inline-block;
+    font-size: 15pt;
+    font-weight: 500;
+    font-family: 'Arial Narrow','Times New Roman','Jameel Noori Nastaleeq';
+    vertical-align: top;
+    color: #000000;
+}
+
+.McqType span {
+    float: left;
+    font-weight: bold;
+    margin-right: 3px;
+    line-height: 1;
+}
+
+.McqType p {
+    float: left;
+    font-weight: 500;
+    margin-left: 3px;
+    line-height: 1;
+}
+
+
+
+
+
+.UrduMcqs {
+    float: right;
+    width: 25%;
+    display: inline-block;
+    font-size: 15pt;
+    font-weight: 500;
+    font-family: 'Arial Narrow','Jameel Noori Nastaleeq';
+    vertical-align: top;
+    color: #000000;
+}
+
+.UrduMcqs span {
+    float: right;
+    font-weight: bold;
+    margin-left: 3px;
+    line-height: 1;
+}
+
+.UrduMcqs p {
+    float: right;
+    margin-right: 3px;
+    line-height: 1;
+    word-spacing: -3px;
+}
+
+.EnglishMcqs {
+    width: 25%;
+    display: inline-block;
+    font-size: 15pt;
+    font-weight: 500;
+    font-family: 'Arial Narrow','Times New Roman','Jameel Noori Nastaleeq';
+    vertical-align: top;
+    color:#000000;
+}
+
+.EnglishMcqs span {
+    float: left;
+    font-weight: bold;
+    margin-right: 3px;
+    line-height: 1;
+}
+
+.EnglishMcqs p {
+    float: left;
+    font-weight: 500;
+    margin-left: 3px;
+    line-height: 1;
+}
+
+.TwoWordsType .UrduAlign {
+    width: 50%;
+    float: right;
+}
+
+.TwoWordsType .EnglishAlign {
+    width: 50%;
+    float: left;
+}
+
+.ThreeWordsType .UrduAlign {
+    width: 33%;
+    float: right;
+    text-align: center;
+}
+
+.ThreeWordsType .EnglishAlign {
+    width: 33%;
+    float: left;
+    text-align: center;
+}
+
+.FiveWordsType .UrduAlign {
+    width: 20%;
+    float: right;
+}
+
+.FiveWordsType .EnglishAlign {
+    width: 20%;
+    float: left;
+}
+
+/*Heading Table Alignment CSS*/
+.HeadingTbl {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.Td1 {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 0px solid #fff;
+    color: #000;
+    font-family: 'Arial Narrow','Arial','Times New Roman';
+}
+
+.Td2 {
+    font-size: 13pt;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    color: #000;
+    font-family: 'Arial Narrow','Arial','Times New Roman';
+}
+
+.Td3 {
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 0px solid #fff;
+    color: #000;
+    font-family: 'Arial Narrow','Arial','Times New Roman';
+}
+
+.Td4 {
+    font-size: 14pt;
+    font-weight: bolder;
+    text-align: right;
+    border-bottom: 2px solid #000;
+    color: #000;
+    word-spacing: -4px;
+    font-family: 'Jameel Noori Nastaleeq','Times New Roman','Arial';
+}
+
+.Qboards {
+    margin-top: -10px;
+    font-size: 11pt;
+    background-color: #e0e0e0;
+    width: 100%;
+    font-weight: 400;
+    float: left;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    text-align:left;
+}
+
+hr {
+    box-sizing: content-box;
+    overflow: visible;
+    margin-bottom: 2.5rem;
+    border-top: 2px solid #000;
+}
+
+.lineOuter {
+    margin-top: -5px;
+    margin-bottom: -25px;
+}

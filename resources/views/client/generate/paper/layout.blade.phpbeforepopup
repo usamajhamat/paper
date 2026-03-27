@@ -1,0 +1,1365 @@
+
+@php
+    $client=session('client');
+    $system=\App\Models\Admin\System::info();
+@endphp
+        <!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="msapplication-TileColor" content="#ff685c">
+    <meta name="theme-color" content="#32cafe">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Title -->
+    <title>Paper Generation</title>
+
+    <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css?display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/admin/assets/fonts/fonts/font-awesome.min.css')}}">
+
+    <!-- Font Family-->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
+    <!-- Dashboard Css -->
+    <link href="{{asset('public/admin/assets/css/dashboard.css')}}" rel="stylesheet" />
+    <!-- Accordion Css -->
+    <link href="{{asset('public/admin/assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />
+    <!-- Tabs Style -->
+    <link href="{{asset('public/admin/assets/plugins/tabs/style.css')}}" rel="stylesheet" />
+
+    <!-- Date Picker Plugin -->
+    <link href="{{asset('public/admin/assets/plugins/date-picker/spectrum.css')}}" rel="stylesheet" />
+
+    <!-- Notifications  Css -->
+    <link href="{{asset('public/admin/assets/plugins/notify/css/jquery.growl.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/admin/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
+
+    <!-- c3.js Charts Plugin -->
+    <link href="{{asset('public/admin/assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
+    <!-- Data table css -->
+    <link href="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+
+    <!-- select2 Plugin -->
+    <link href="{{asset('public/admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+
+    <!-- Custom scroll bar css-->
+    <link href="{{asset('public/admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
+
+    <!-- Sidemenu Css -->
+    <link href="{{asset('public/admin/assets/plugins/toggle-sidebar/sidemenu.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{asset('public/admin/assets/css/jquery-confirm.min.css')}}">
+    <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css?display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap" rel="stylesheet">
+    <!---Font icons-->
+    <link href="{{asset('public/admin/assets/plugins/iconfonts/plugin.css')}}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    {{--<link href="https://www.paktestsolution.com/Content/GeneratePaper.css" rel="stylesheet" />--}}
+
+
+    <style>
+        @media screen and (max-width: 1200px) {
+            body {
+                zoom: 1;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            body {
+                zoom: 0.8;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                zoom: 0.6;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            body {
+                zoom: 0.5;
+            }
+        }
+
+
+        .error {
+            color: red;
+            font-size:small;
+        }
+        .urdu{
+            direction: rtl;
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 1.5em;
+        }
+
+        .english{
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 1.5em;
+        }
+        .set_width{
+            width: 95%;
+        }
+        .margin_bottom{
+            margin-bottom: 3px;
+        }
+
+        @keyframes fa-blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+        .fa-blink {
+            -webkit-animation: fa-blink 1.75s linear infinite;
+            -moz-animation: fa-blink 1.75s linear infinite;
+            -ms-animation: fa-blink 1.75s linear infinite;
+            -o-animation: fa-blink 1.75s linear infinite;
+            animation: fa-blink 1.75s linear infinite;
+        }
+         .multiselectdorpdown{
+            background:#fff  !important;
+            text-align:left !important;
+            border: 1px solid #ff685c !important;
+        }
+
+    </style>
+
+</head>
+<body class="app sidebar-mini rtl" style="background-color: #fff;">
+<div id="global-loader" ></div>
+<div class="page">
+    <div class="page-main">
+        <div class="app-header header py-1 d-flex">
+            <div class="container-fluid">
+                <div class="d-flex">
+                    <a class="header-brand" href="javascript:void(0)">
+                        <img src="{{url('images').'/'.$system->logo}}" class="header-brand-img d-none d-sm-block" alt="CTS Logo"><img src="{{url('images').'/'.$system->logo}}" class="header-brand-img-2 d-sm-none" alt="CTS logo">
+                    </a>
+                    <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
+
+                    <div class="d-flex order-lg-2 ml-auto">
+
+                        <div class="dropdown d-none d-md-flex " >
+                            <a  class="nav-link icon full-screen-link">
+                                <i class="mdi mdi-arrow-expand-all"  id="fullscreen-button"></i>
+                            </a>
+                        </div>
+                        <div class="dropdown">
+                            <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                                @if($client->photo!=null)
+                                    <span class="avatar avatar-md brround"><img src="{{url('images').'/'.$client->photo}}" alt="Profile-img" class="avatar avatar-md brround"></span>
+                                @else
+                                    <span class="avatar avatar-md brround"><img src="{{url('images/photo/my-photo.png')}}" alt="Profile-img" class="avatar avatar-md brround"></span>
+                                @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
+                                <div class="text-center">
+                                    <a href="#" class="dropdown-item text-center font-weight-sembold user">{{$client->name}}</a>
+
+                                    <div class="dropdown-divider"></div>
+                                </div>
+                                {{--<a class="dropdown-item" href="{{route('teacher-profile')}}">--}}
+                                    {{--<i class="dropdown-icon mdi mdi-account-outline "></i> Profile--}}
+                                {{--</a>--}}
+                                {{--<a class="dropdown-item" href="{{route('client-logout')}}">--}}
+                                    {{--<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out--}}
+                                {{--</a>--}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar menu-->
+        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+        <aside class="app-sidebar">
+            <div class="app-sidebar__user">
+                <div class="dropdown user-pro-body">
+                    <div>
+                        @if($client->photo!=null)
+                            <img src="{{url('images').'/'.$client->photo}}" alt="User Image" class="avatar avatar-xl brround mCS_img_loaded">
+                        @else
+                            <img src="{{url('images/photo/my-photo.png').'/'.$client->photo}}" alt="User Image" class="avatar avatar-xl brround mCS_img_loaded">
+                        @endif
+                        {{--<a href="{{route('admin-setting',$client->id)}}" class="profile-img">--}}
+                        {{--<span class="fa fa-pencil" aria-hidden="true"></span>--}}
+                        {{--</a>--}}
+                    </div>
+                    <div class="user-info mb-2">
+                        <h4 class="font-weight-semibold text-dark mb-1">{{$client->name}}</h4>
+                        <span class="mb-0 text-muted">{{$client->client_role}}</span>
+                    </div>
+                    {{--<a href="#" title="settings" class="user-button"><i class="fa fa-cog"></i></a>--}}
+                    {{--<a href="{{route('client-change-password')}}" title="Change Password" class="user-button"><i class="fas fa-key"></i></a>--}}
+                    {{--<a href="{{route('client-logout')}}" title="logout" class="user-button"><i class="fas fa-sign-out-alt"></i></a>--}}
+                </div>
+            </div>
+            <ul class="side-menu">
+
+                <li>
+                    <a class="side-menu__item" href="javascript:void(0)" id="QuestionMenu"><i class="side-menu__icon fa fa-list"></i><span class="side-menu__label">Question Menu</span></a>
+                </li>
+                <li>
+                    <a class="side-menu__item" href="javascript:void(0)"  onclick="content_editable()"><i class="side-menu__icon fa fa-edit"></i><span class="side-menu__label">Edition Mode</span></a>
+                </li>
+                {{--@if($role=='Administrator')--}}
+                {{--<li>--}}
+                    {{--<a class="side-menu__item print"  href="javascript:void(0)"><i class="side-menu__icon fa fa-download"></i><span class="side-menu__label">Download Paper</span></a>--}}
+                {{--</li>--}}
+                {{--@endif--}}
+                <li>
+                    <a class="side-menu__item" id="savePaper" href="javascript:void(0)"><i class="side-menu__icon fa fa-database"></i><span class="side-menu__label">Save Paper</span></a>
+                </li>
+                <li>
+                    <a class="side-menu__item" id="cancelPaper" href="javascript:void(0)"><i class="side-menu__icon fa fa-trash-alt"></i><span class="side-menu__label">Cancel Paper</span></a>
+                </li>
+                <li>
+                    <div class="form-group">
+                            <label class="form-label" for="Templates">Change Layout</label>
+                        <select name="Templates" id="Templates" class="custom-select" onchange="layoutId();">
+                            <option value="1">Layout 1</option>
+                            <option value="2">Layout 2</option>
+                            <option value="3">Layout 3</option>
+                            <option value="4">Layout 4</option>
+                        </select>
+                    </div>
+
+                </li>
+
+            </ul>
+        </aside>
+
+        <div class="app-content  my-3 my-md-5">
+            <div class="side-app">
+                {{--@include('admin.messages.message')--}}
+                {{--@section('content')--}}
+                {{--@show--}}
+                @include('client.generate.paper.layout.layout-3')
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
+                    Copyright © 2021. Designed by <a href="#">Logic Square</a> All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer-->
+
+    <!-- Large Modal -->
+    <div id="menuModal" class="modal fade"  data-backdrop="static">
+        <div class="modal-dialog" role="document" style="max-width: 1100px;border:4px solid #ff685c;">
+            <div class="modal-content ">
+                <div class="modal-header pd-x-20 bg-light">
+                    <h6 class="modal-title" style="position: relative;top:4px;">{{ $subject->subject_name }} (Chapters: @foreach($chapters as $chapter)
+                                                        @php $ch=\App\Models\Admin\Chapter::chaptersById($chapter) @endphp
+                                                    {{$ch->chapter_name}} @if(!$loop->last), @endif
+                                                                    
+                                                    @endforeach)</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        {{--<span aria-hidden="true" style="font-size: 24px;">&times;</span>--}}
+                        <img src="https://www.vhv.rs/dpng/d/493-4933495_close-button-png-transparent-image-close-icon-png.png" style="height: 25px;width:40px;" alt="">
+                    </button>
+                </div>
+                <div class="modal-body pd-20" id="modal-body88">
+
+                    <form id="generateForm">
+                        <input type="hidden" name="form" value="generate">
+                        <div class="col-md-12">
+                            <div class="">
+                                <div class="panel-group" id="media-accordion" role="tablist" >
+                                    <div class="media media-lg">
+                                        <div class="media-left media-middle">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#media-collapse-1" aria-expanded="true" >
+                                                <img class="media-object" src="{{url('images').'/'.$subject->cover}}" alt="subject image" style="height:auto;">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="panel-heading m-0 pt-0 pb-0">Chapters List</h4>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    @foreach($chapters as $chapter)
+                                                        @php $ch=\App\Models\Admin\Chapter::chaptersById($chapter) @endphp
+                                                        <div class="col-md-4">
+                                                            <div class="form-group m-0">
+                                                                <div class="custom-controls-stacked">
+                                                                    <label class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" name="ch[]" value="{{$ch->chapter_id}}" checked>
+                                                                        <span class="custom-control-label"> CHAP {{$ch->chapter_number}}: {{$ch->chapter_name}}</span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                                {{--<div class="row">--}}
+                                                    {{--<div class="col-md-12">--}}
+                                                        {{--<footer class="text-right p-1 mt-1">--}}
+                                                            {{--<a data-toggle="collapse" data-parent="#media-accordion" href="#media-collapse-1" aria-expanded="true"  class="btn btn-sm btn-primary">--}}
+                                                                {{--<i class="fa fa-search fa-blink"></i> Toggle Search Form--}}
+                                                            {{--</a>--}}
+                                                        {{--</footer>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="media-collapse-1" class="panel-collapse collapse show" role="tabpanel" >
+                                        <div class="panel-body">
+                                            <div class="jumbotron">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="type">Question Type</label>
+                                                            <select name="type" id="type" class="form-control type10" style="border: 1px solid #ff685c;">
+                                                                <option value="">select</option>
+                                                                @foreach($types as $type)
+                                                                    @foreach($assign_types as $a)
+                                                                        @if($type->question_id==$a)
+                                                                            @php $urdu=$type->urdu!=null?'('.$type->urdu.')':'' @endphp
+                                                                            @if($type->english!=null)
+                                                                                <option value="{{$type->question_id}}">{{$type->english}} {{$urdu}}</option>
+                                                                            @else
+                                                                                <option value="{{$type->question_id}}">{{$type->urdu}}</option>
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group m-0">
+                                                            <label class="form-label" for="priority">Priority</label>
+                                                            <!--@foreach($priorities as $p)-->
+                                                            <!--        @foreach($assign_priority as $a)-->
+                                                            <!--            @if($p->priority_id==$a)-->
+                                                            <!--            <div class="form-check-inline">-->
+                                                            <!--                <label class="custom-control custom-checkbox" >-->
+                                                            <!--                    <input  type="checkbox" class="custom-control-input pr" name="priority[]" value="{{$p->priority_id}}" checked>-->
+                                                            <!--                    <span class="custom-control-label" style="margin-right: 2px;">{{$p->priority_name}}</span>-->
+                                                            <!--                </label>-->
+                                                            <!--            </div>-->
+                                                            <!--            @endif-->
+                                                            <!--        @endforeach-->
+                                                            <!--@endforeach-->
+                                                            <select class="form-control pr" id="multiselect" style="border: 1px solid #ff685c;" name="priority[]" multiple >
+                                                               
+                                                                @foreach($priorities as $p)
+                                                                    @foreach($assign_priority as $a)
+                                                                        @if($p->priority_id==$a)
+                                                                            <option value="{{$p->priority_id}}" >{{ $p->priority_name }} </option>
+                                                                        @endif
+                                                                    @endforeach
+                                                            @endforeach
+                                                            </select>
+                                                            {{--</div>--}}
+                                                        </div>
+
+                                                        {{--<div class="form-group">--}}
+                                                            {{--<label class="form-label" for="priority">Priority</label>--}}
+                                                            {{--<select name="priority[]" id="priority" class="form-control select2" multiple="multiple" style="width:100%;">--}}
+                                                                {{--@foreach($priorities as $p)--}}
+                                                                    {{--@foreach($assign_priority as $a)--}}
+                                                                        {{--@if($p->priority_id==$a)--}}
+                                                                            {{--<option value="{{$p->priority_id}}" selected>{{$p->priority_name}}</option>--}}
+                                                                        {{--@endif--}}
+                                                                    {{--@endforeach--}}
+                                                                {{--@endforeach--}}
+                                                            {{--</select>--}}
+                                                        {{--</div>--}}
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="mediums">Medium</label>
+                                                            <select class="form-control medium1" id="mediums" name="medium" style="border: 1px solid #ff685c;">
+                                                                <option value="">Select</option>
+                                                                @foreach($mediums as $medium)
+                                                                    <option value="{{$medium->medium_id}}">{{$medium->medium_name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Required Questions</label>
+                                                            <input type="number" class="form-control totalq"  name="total_question" id="total_questions"  placeholder="Required Questions" style="border: 1px solid #ff685c;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Ignored Questions</label>
+                                                            <input type="number" class="form-control" name="ignored" id="ignored"  placeholder="Ignored Questions" style="border: 1px solid #ff685c;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Each Marks</label>
+                                                            <input type="number" class="form-control each" name="mark" id="mark"  placeholder="Each Mark" style="border: 1px solid #ff685c;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Blank Lines</label>
+                                                            <input type="number" class="form-control" name="blank" id="exampleInputEmail11"  placeholder="Blank Lines" style="border: 1px solid #ff685c;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 mt-6">
+                                                        <div class="form-group">
+                                                            {{--<div class="form-label">Checkboxes</div>--}}
+                                                            <div class="custom-controls-stacked">
+                                                                <label class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" name="boards" value="1">
+                                                                    <span class="custom-control-label">Show Boards</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 mt-6">
+                                                        <div class="form-group">
+                                                            {{--<div class="form-label">Checkboxes</div>--}}
+                                                            <div class="custom-controls-stacked">
+                                                                <label class="custom-control custom-checkbox">
+                                                                    <input type="checkbox" class="custom-control-input" name="lines" value="1">
+                                                                    <span class="custom-control-label">2 Questions Per Line</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4 mt-6">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%"><i class="fa fa-search"></i> SEARCH</button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                {{--<div class="form-footer">--}}
+                                                {{--</div>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mb-5 mt-3">
+                        <div class="col-md-12" style="height: 40px;background-color: #ff685c;color:#ffffff">
+                            <div class="row">
+                                <div class="col-md-6 mt-2">
+                                    <strong class="">Selected Questions: <span class="selected">0</span></strong>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <strong class="float-right">Total Questions: <span class="total">0</span></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="">
+
+                        <div class="col-12" style="height:500px;overflow-y: auto;">
+                            <div id="data">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both; margin-bottom: 15px"></div>
+                    <div class="row" style="">
+                        <div class="col-md-6">
+                            <button  class="btn btn-info" type="button" id="randomSelect">
+                                Random Select <i class="fa fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-primary float-right" id="addBtn" type="button">
+                                <i class="fa fa-plus"></i> Add Question
+                            </button>
+                        </div>
+                    </div>
+                    {{--<div class="row mt-3">--}}
+                        {{--<div class="col-md-12 bg-light" style="height: 60px;">--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    <div style="clear:both; margin-bottom: 15px"></div>
+
+                    <div class="row">
+                        <div class="col-12" style="height: 500px;overflow-y: auto;">
+                            <div class="SelectedDiv" id="selectedQuestion" style="background-color: #ffff;">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+    <div id="editMenuModal" class="modal fade"  data-backdrop="static">
+        <div class="modal-dialog" role="document" style="max-width: 1100px;border:4px solid #ff685c;">
+            <div class="modal-content ">
+                <div class="modal-header pd-x-20 bg-light">
+                    <h6 class="modal-title" style="position: relative;top:4px;">Generate Paper</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        {{--<span aria-hidden="true" style="font-size: 24px;">&times;</span>--}}
+                        <img src="https://www.vhv.rs/dpng/d/493-4933495_close-button-png-transparent-image-close-icon-png.png" style="height: 25px;width:40px;" alt="">
+                    </button>
+                </div>
+                <div class="modal-body pd-20" id="modal-body">
+
+
+                </div>
+            </div>
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+    <style>
+        /*left right modal*/
+        .modal.left_modal, .modal.right_modal{
+            position: fixed;
+            z-index: 99999;
+        }
+        .modal.left_modal .modal-dialog,
+        .modal.right_modal .modal-dialog {
+            position: fixed;
+            margin: auto;
+            width: 32%;
+            height: 100%;
+            -webkit-transform: translate3d(0%, 0, 0);
+            -ms-transform: translate3d(0%, 0, 0);
+            -o-transform: translate3d(0%, 0, 0);
+            transform: translate3d(0%, 0, 0);
+        }
+
+        .modal-dialog {
+            /* max-width: 100%; */
+            margin: 1.75rem auto;
+        }
+        @media (min-width: 576px)
+        {
+            .left_modal .modal-dialog {
+                max-width: 100%;
+            }
+
+            .right_modal .modal-dialog {
+                max-width: 100%;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .right_modal .modal-dialog {
+                max-width: 100%;
+            }
+            .left_modal .modal-dialog {
+                max-width: 100%;
+            }
+        }
+        @media screen and (max-width: 992px) {
+            .right_modal .modal-dialog {
+                max-width: 100%;
+            }
+            .left_modal .modal-dialog {
+                max-width: 100%;
+            }
+        }
+        .modal.left_modal .modal-content,
+        .modal.right_modal .modal-content {
+            /*overflow-y: auto;
+              overflow-x: hidden;*/
+            height: 100vh !important;
+        }
+
+        .modal.left_modal .modal-body,
+        .modal.right_modal .modal-body {
+            padding: 15px 15px 30px;
+        }
+
+        /*.modal.left_modal  {
+            pointer-events: none;
+            background: transparent;
+        }*/
+
+        .modal-backdrop {
+            display: none;
+        }
+
+        /*Left*/
+        .modal.left_modal.fade .modal-dialog{
+            left: -50%;
+            -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+            transition: opacity 0.3s linear, left 0.3s ease-out;
+        }
+
+        .modal.left_modal.fade.show .modal-dialog{
+            left: 0;
+            box-shadow: 0px 0px 19px rgba(0,0,0,.5);
+        }
+
+        /*Right*/
+        .modal.right_modal.fade .modal-dialog {
+            right: -50%;
+            -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+            -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+        }
+
+
+
+        .modal.right_modal.fade.show .modal-dialog {
+            right: 0;
+            box-shadow: 0px 0px 19px rgba(0,0,0,.5);
+        }
+
+        /* ----- MODAL STYLE ----- */
+        /*.modal-content {*/
+            /*border-radius: 0;*/
+            /*border: none;*/
+        /*}*/
+
+
+
+        .modal-header.left_modal, .modal-header.right_modal {
+
+            padding: 10px 15px;
+            border-bottom-color: #EEEEEE;
+            background-color: #FAFAFA;
+        }
+
+        .modal_outer .modal-body {
+            /*height:90%;*/
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 91vh;
+        }
+    </style>
+
+    <div class="modal modal_outer right_modal fade" id="information_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" >
+        <div class="modal-dialog" role="document">
+            {{--<form method="post"   id="get_quote_frm">--}}
+                {{--@csrf--}}
+                <div class="modal-content ">
+                    <!-- <input type="hidden" name="email_e" value="admin@filmscafe.in"> -->
+                    <div class="modal-header bg-primary">
+                        <h4 class="modal-title text-white bold">Save Generated Paper</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="text-white bolder">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body get_quote_view_modal_body">
+                         <div class="jumbotron">
+                             @if(session()->has('edit00-paper'))
+                                 @php $paper128=session('edit00-paper') @endphp
+                                 <form action="{{route('edit-saved-paper')}}" method="post" id="savedForm">
+                                     @csrf
+                                     <input type="hidden" name="paperHtml" id="paperHtml">
+                                     <input type="hidden" name="answerHtml" id="answerHtml">
+                                     <input type="hidden" name="id" value="{{$paper128->paperId}}">
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Paper Name</label>
+                                                 <input type="text" class="form-control" value="{{$paper128->paper_name}}" name="name" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Schedule Date</label>
+                                                 <input type="date" class="form-control" value="{{$paper128->schedule_date}}" name="sd" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Allowed Time</label>
+                                                 <input type="text" step="any" class="form-control" value="{{$paper128->time}}" name="allowed" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Total Marks</label>
+                                                 <input type="number" class="form-control" value="{{$paper128->marks}}" name="marks" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <button class="btn btn-primary w-100" type="submit"><i class="fa fa-plus"></i> Save Paper</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </form>
+                                 @else
+                                 <form action="{{route('save-paper')}}" method="post" id="savedForm">
+                                     @csrf
+                                     <input type="hidden" name="paperHtml" id="paperHtml">
+                                     <input type="hidden" name="answerHtml" id="answerHtml">
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Paper Name</label>
+                                                 <input type="text" class="form-control" name="name" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Schedule Date</label>
+                                                 <input type="date" class="form-control" name="sd" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Allowed Time</label>
+                                                 <input type="text" step="any" class="form-control" name="allowed" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <label for="">Total Marks</label>
+                                                 <input type="number" class="form-control" name="marks" required>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row">
+                                         <div class="col-12">
+                                             <div class="form-group">
+                                                 <button class="btn btn-primary w-100" type="submit"><i class="fa fa-plus"></i> Save Paper</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </form>
+                             @endif
+
+                         </div>
+
+                    </div>
+
+                </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+</div>
+
+<!-- Dashboard js -->
+<script src="{{asset('public/admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/vendors/jquery.sparkline.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/vendors/selectize.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/vendors/jquery.tablesorter.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/vendors/circle-progress.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/rating/jquery.rating-stars.js')}}"></script>
+
+<script src="{{asset('public/admin/assets/js/jquery.validate.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/additional-methods.js')}}"></script>
+<!-- Fullside-menu Js-->
+<script src="{{asset('public/admin/assets/plugins/toggle-sidebar/sidemenu.js')}}"></script>
+
+<script src="{{asset('public/admin/assets/js/printThis.js')}}"></script>
+
+<!---Accordion Js-->
+{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordion.min.js')}}"></script>--}}
+{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordions.js')}}"></script>--}}
+
+<!-- Data tables -->
+<script src="{{asset('public/admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/datatable/datatable.js')}}"></script>
+
+<!-- Notifications js -->
+<script src="{{asset('public/admin/assets/plugins/notify/js/rainbow.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/notify/js/sample.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/notify/js/jquery.growl.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/notify/js/notifIt.js')}}"></script>
+
+<!-- Datepicker js -->
+<script src="{{asset('public/admin/assets/plugins/date-picker/spectrum.js')}}"></script>
+<script src="{{asset('public/admin/assets/plugins/date-picker/jquery-ui.js')}}"></script>
+
+
+
+@stack('style',false)
+
+
+<!-- Custom scroll bar Js-->
+<script src="{{asset('public/admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('public/admin/assets/js/jquery-confirm.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+<!--Select2 js -->
+<script src="{{asset('public/admin/assets/plugins/select2/select2.full.min.js')}}"></script>
+<!-- Inline js -->
+<script src="{{asset('public/admin/assets/js/select2.js')}}"></script>
+{{--<script src="https://www.paktestsolution.com/Scripts/GeneratePaperPopup.js"></script>--}}
+{{--<script src="{{asset('public/client/jquery.romannumerals.js')}}"></script>--}}
+
+{{--<script>--}}
+    {{--$(document).ready(function () {--}}
+        {{--$('.roman').romannumerals();--}}
+    {{--});--}}
+{{--</script>--}}
+
+<!-- Custom Js-->
+<script src="{{asset('public/admin/assets/js/custom.js')}}"></script>
+@stack('script',false)
+
+{{--@include('client.generate.paper.filter-validation')--}}
+@include('client.generate.paper.saved-validation')
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+
+<script>
+    var numItems = $('#QuestionPanelDiv').children('div').length;
+    var count=0;
+    // var qn=numItems+1;  old
+    var qn=numItems;    //new
+    var en=0;
+    $("#menuModal").on("hidden.bs.modal", function(){
+        $("#data").empty();
+        $("#selectedQuestion").empty();
+        $(this).find('form').trigger('reset');
+        // $('#media-collapse-1').collapse('hide');
+        $('.selected').text(0);
+        $('.total').text(0);
+        $('#total_questions').val(null);
+
+    });
+    $("#editMenuModal").on("hidden.bs.modal", function(){
+        $("#modal-body").empty();
+        $('.selected').text(0);
+        $('.total').text(0);
+        $('#total_questions').val(null);
+
+        // $("#selectedQuestion").empty();
+    });
+    $("#information_modal").on("hidden.bs.modal", function(){
+        $(this).find('form').trigger('reset');
+    });
+    $(document).ready(function () {
+        $('#QuestionMenu').click(function () {
+            $('#menuModal').modal('show')
+        });
+        $('#multiselect').multiselect({
+            buttonWidth: '300px',
+            includeSelectAllOption: true,
+            nonSelectedText: 'Select Priorities',
+            buttonClass: 'btn btn-default multiselectdorpdown'
+        });
+        $(document).on('click','.upper',function () {
+            //$('#selectedQuestion').append($(this).html())
+            var qId=$(this).data("id");
+            var required2=$('#total_questions').val();
+           // alert(count)
+            if(count==required2)
+            {
+                $.confirm({
+                    icon: 'fa fa-warning text-danger',
+                    title: 'Message!',
+                    content: "Questions limit is exceeded.",
+                    type: 'red',
+                    typeAnimated: true,
+                    buttons: {
+                        OK: function () {
+                        }
+                    }
+                });
+            }else{
+                $.ajax({
+                    type:'POST',
+                    url:'{{route('select-question')}}',
+                    data:{questionId:qId},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success:function(data){
+                        if(data.form=='generate')
+                        {
+                            count=data.total;
+                            $('#data').html(data.questions);
+                            $('#selectedQuestion').html(data.random);
+                            $('.selected').text(data.total);
+                        }else if(data.form=='edit')
+                        {
+                            count=data.total;
+                            $('#data1').html(data.questions);
+                            $('#selectedQuestion1').html(data.random);
+                            $('.selected').text(count);
+                        }
+
+
+                    },
+                });
+            }
+
+        });
+
+        $(document).on('click','.remove1',function () {
+            //$('#selectedQuestion').append($(this).html())
+            var qId=$(this).data("id");
+            var required=$('#total_question').val();
+            $.ajax({
+                type:'POST',
+                url:'{{route('remove-question')}}',
+                data:{questionId:qId},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success:function(data){
+                    console.log(data)
+                    if(data.form=='generate')
+                    {
+                        count=data.total;
+                        $('#data').html(data.questions);
+                        $('#selectedQuestion').html(data.random);
+                        $('.selected').text(data.total);
+                    }else if(data.form=='edit')
+                    {
+                        count=data.total;
+                        $('#data1').html(data.questions);
+                        $('#selectedQuestion1').html(data.random);
+                        $('.selected').text(count);
+                    }
+
+
+                },
+            });
+
+        });
+
+        $(document).on('click','#savePaper',function () {
+            //$('#selectedQuestion').append($(this).html())
+
+            if ($("#QuestionPanelDiv").html().length >0)
+            {
+                $("#paperHtml").val($("#QuestionPanelDiv").html());
+                $("#answerHtml").val($("#AnswerPanelDiv").html());
+                $('#information_modal').modal('show');
+            }else{
+                $.confirm({
+                    icon: 'fa fa-warning text-danger',
+                     title: 'Message!',
+                    content: "Please First Generate Paper.",
+                    type: 'red',
+                    typeAnimated: true,
+                    buttons: {
+                        OK: function () {
+                        }
+                    }
+                });
+            }
+
+
+
+        });
+
+        $(document).on('click','#cancelPaper',function () {
+
+            $.confirm({
+                icon: 'fa fa-warning text-danger',
+                title: 'Message!',
+                content: "Are Sure To Cancel Paper.",
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    YES: function () {
+                        $.ajax({
+                            type:'POST',
+                            url:'{{route('paper-cancel')}}',
+                            data:{},
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            success:function(data){
+                                location.href="{{route('client-home')}}"
+                            },
+                        });
+                    },
+                    NO: function () {
+                        $.alert('Canceled!');
+                    }
+                }
+            });
+        });
+    });
+    
+    function checkCount() {
+        
+    }
+    function  confirmBox(url) {
+        $.confirm({
+            icon: 'fa fa-warning text-danger',
+            title: 'Are you sure!',
+            content: "Fatal! data will be lost.You can not recover it.",
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                delete: function () {
+                    remove(url)
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                }
+            }
+        });
+    }
+    function notification(type,message) {
+        notif({
+            msg: "<b>"+type+": </b>"+message,
+            type:type
+        });
+    }
+
+    $(document).on('submit', '#generateForm', function (e) {
+        e.preventDefault();
+        var formType =e.currentTarget[0].value
+        if(validate(formType))
+        {
+            $.ajax({
+                type:'POST',
+                url:'{{route('get-paper-question')}}',
+                data:$(this).serialize(),
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success:function(data){
+                    if(data.form=='generate')
+                    {
+                        if(data.generated == 0){
+                            msg('No Questions found for current selection')
+                        }
+                        count=0;
+                        $('#data').html(data.html);
+                        //$('#total').text(data.total.length);
+                        $('.selected').text(count);
+                        $('#selectedQuestion').empty();
+                        $('.total').text(data.generated);
+
+                    }else if(data.form=='edit')
+                    {
+                        count=0;
+                        $('#data1').html(data.html);
+                       // $('#total').text(data.total.length);
+                        $('.selected').text(count);
+                        $('.total').text(data.generated);
+                        $('#selectedQuestion1').empty();
+                        $('#total_questions').val($('.total_questions').val());
+                    }
+
+                },
+            });
+        }
+    });
+
+    $(document).on('click', '#randomSelect', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{{route('random-question')}}',
+            data:{},
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success:function(data){
+                count=0;
+                if(data.form=='generate')
+                {
+                    count=data.total;
+                    $('#data').html(data.questions);
+                    $('#selectedQuestion').html(data.random);
+                    $('.selected').text(count);
+                }else if(data.form=='edit')
+                {
+                    count=data.total;
+                    $('#data1').html(data.questions);
+                    $('#selectedQuestion1').html(data.random);
+                    $('.selected').text(count);
+                }
+
+            },
+        });
+    });
+
+    $(document).on('click', '#addBtn', function (e) {
+        e.preventDefault();
+        // q_number=parseInt(en)!=0?en:qn;
+        var required2=$('#total_questions').val();
+        if(required2==count)
+        {
+            $.ajax({
+                type:'POST',
+                url:'{{route('add-question')}}',
+                data:{q_number:qn+1},
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success:function(data){
+                    answers(data.keys)
+                    count=0;
+                    $('.selected').text(count);
+                    if(data.form=='generate')
+                    {
+                        $('#QuestionPanelDiv').append(data.html);
+                        $('#data').empty();
+                        $('#selectedQuestion').empty();
+                        qn=qn+1;
+                        // alert("before edit: "+qn);
+                    }else if(data.form=='edit')
+                    {
+                        $(data.panel).replaceWith(data.html);
+                        en=0;
+                        //qn=qn+1;
+                        $('#data1').empty();
+                        $('#editMenuModal').modal('hide');
+                        // alert("after edit: "+qn);
+                    }
+
+                },
+            });
+        }else{
+            $.confirm({
+                icon: 'fa fa-warning text-danger',
+                title: 'Message!',
+                content: "Choose required questions.",
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    OK: function () {
+                    }
+                }
+            });
+        }
+
+
+    });
+
+    function answers(data) {
+         if(data.type=='mcq')
+         {
+             $('#MultiAnswerSheet').html(null);
+             $('#MultiAnswerSheet').html(data.keys)
+         }else if (data.type=='blank')
+         {
+             $('#FillBlankAnswerSheet').html(null);
+             $('#FillBlankAnswerSheet').html(data.keys)
+         }
+         else if (data.type=='bol')
+         {
+             $('#TrueFalseAnswerSheet').html(null);
+             $('#TrueFalseAnswerSheet').html(data.keys)
+         }
+    }
+
+    $(document).ready(function () {
+        $('.layout-1').show();
+    });
+
+    function layoutId() {
+        var lyt = $('#Templates').val();
+        if (lyt == 1) {
+            $('.layout-1').show();
+            $('.layout-2').hide();
+            $('.layout-3').hide();
+            $('.layout-4').hide();
+        }
+        if (lyt == 2) {
+            $('.layout-2').show();
+            $('.layout-1').hide();
+            $('.layout-3').hide();
+            $('.layout-4').hide();
+        }
+        if (lyt == 3) {
+            $('.layout-3').show();
+            $('.layout-1').hide();
+            $('.layout-2').hide();
+            $('.layout-4').hide();
+        }
+        if (lyt == 4) {
+            $('.layout-4').show();
+            $('.layout-1').hide();
+            $('.layout-2').hide();
+            $('.layout-3').hide();
+        }
+    }
+    function content_editable() {
+        var value = $('.editable_content').attr('contenteditable');
+
+        if (value == 'false') {
+            $('.editable_content').attr('contenteditable', 'true');
+            $('.editable_content').css('border-top-style', 'dotted');
+            $('.editable_content').css('border-right-style', 'dotted');
+            $('.editable_content').css('border-bottom-style', 'dotted');
+            $('.editable_content').css('border-left-style', 'dotted');
+            $('.editable_content').css('border-color', 'red');
+        }
+        else {
+            $('.editable_content').attr('contenteditable', 'false');
+            $('.editable_content').css('border-style', 'none');
+        }
+    }
+    function RemoveQuePanel(Panel) {
+
+        $.confirm({
+            icon: 'fa fa-warning text-danger',
+            title: 'Warning!',
+            content: "Are you sure to remove it?",
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                delete: function () {
+                    $(("#" + $(Panel).attr("MainID"))).remove();
+                },
+                cancel: function () {
+                   // $.alert('Canceled!');
+                }
+
+            }
+        });
+    }
+
+    function EditQuePanel(Panel) {
+       // ResetAll();
+        var PanelID = "#" + $(Panel).attr("MainID");
+        var queType = $(PanelID).attr("queType");
+        var priorityType = $(PanelID).attr("priorityType");
+        var requiredQues = $(PanelID).attr("requiredQues");
+        var ignoreQues = $(PanelID).attr("ignoreQues");
+        var questionMarks = $(PanelID).attr("questionMarks");
+        var blankLines = $(PanelID).attr("blankLines");
+        var medium = $(PanelID).attr("medium");
+        var SelectedIDs = $(PanelID).attr("SelectedIDs");
+        var chapters = $(PanelID).attr("chapters");
+        var q_number=PanelID.split('-');
+        en=q_number[1];
+        // alert(en)
+        var data={
+                   "type":queType,
+                   "priority":priorityType.split(','),
+                   "total_question":requiredQues,
+                   "ignored":ignoreQues,
+                   "mark":questionMarks,
+                   "blank":blankLines,
+                   "medium":medium,
+                   "form":'edit',
+                   "panel":PanelID,
+                   "q_number":q_number[1],
+                   "cq_number":q_number[1], // current question number that  clicked for edit
+                   "questionsId":SelectedIDs.split(','),
+                   "ch":chapters.split(',')
+        };
+
+        $.ajax({
+            type:'POST',
+            url:'{{route('paper-edit')}}',
+            data:data,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success:function(data){
+              // console.log(data)
+                count=data.total;
+                $('#modal-body').html(data.html);
+                $('#editMenuModal').modal('show');
+                $('.selected').text(count);
+                $('.total').text(data.generated);
+                $('#total_questions').val(data.required);
+            },
+        });
+    }
+
+    function validate(formType) {
+
+           if(formType=='edit')
+           {
+              return editForm()
+           }else if (formType=='generate')
+           {
+              return genForm()
+           }
+
+    }
+
+    function editForm() {
+        if( document.getElementsByClassName('type101')[0].value == "" ) {
+            msg('select question type.')
+            return false;
+        }
+        if( document.getElementsByClassName('medium101')[0].value == "" ) {
+            msg('select question medium')
+            return false;
+        }
+        if( document.getElementsByClassName('t1')[0].value == "" ) {
+            msg('required question field is empty');
+            return false;
+        }
+        if( document.getElementsByClassName('e1')[0].value == "" ) {
+            msg('each question marks is required')
+            return false;
+        }
+        if($("#multiselect :selected").length < 1 ) {
+            msg('questions priority is required')
+            return false;
+        }
+
+        return true;
+    }
+    function genForm() {
+        if( document.getElementsByClassName('type10')[0].value == "" ) {
+            msg('select question type.')
+            return false;
+        }
+        if( document.getElementsByClassName('medium1')[0].value == "" ) {
+            msg('select question medium')
+            return false;
+        }
+        if( document.getElementsByClassName('totalq')[0].value == "" ) {
+            msg('required question field is empty');
+            return false;
+        }
+        if( document.getElementsByClassName('each')[0].value == "" ) {
+            msg('each question marks is required')
+            return false;
+        }
+        if($("#multiselect :selected").length < 1) {
+            msg('questions priority is required')
+            return false;
+        }
+
+        return true;
+    }
+
+    function msg(txt) {
+        $.confirm({
+            icon: 'fa fa-warning text-danger',
+            title: 'Warning!',
+            content:txt,
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                OK: function () {
+                }
+
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

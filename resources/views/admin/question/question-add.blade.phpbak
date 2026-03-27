@@ -1,0 +1,420 @@
+@extends('admin.layout.master')
+@section('content')
+    <div class="row">
+        <div class="col-lg-12">
+            <form class="card" id="questionForm" method="post" action="{{route('question-save')}}" enctype="multipart/form-data">
+                @csrf
+                <div class="card-header">
+                    <h3 class="card-title">Add Question</h3>
+                    <div class="card-options">
+                        {{--<a href="{{route('topic-list')}}" id="add__new__list" type="button" class="btn btn-sm btn-success "><i class="fa fa-list"></i> Topics List</a>--}}
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="course">Course</label>
+                                <select class="form-control custom-select" name="course" id="course">
+                                    <option value="">--Select--</option>
+                                    @foreach($courses as $course)
+                                        <option value="{{$course->course_id}}">{{$course->course_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="classes">Class</label>
+                                <select class="form-control custom-select" id="classes" name="class">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="subjects">Subjects</label>
+                                <select class="form-control custom-select" id="subjects" name="subject">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="chapters">Chapter</label>
+                                <select class="form-control custom-select" id="chapters" name="chapter">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="topics">Topics</label>
+                                <select class="form-control custom-select" id="topics" name="topic">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="types">Question Type</label>
+                                <select class="form-control custom-select tp" id="types" name="q_type">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="priorities">Question Priority</label>
+                                <select class="form-control custom-select" id="priorities" name="priority">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-label" for="mediums">Medium</label>
+                                <select class="form-control custom-select" id="mediums" name="medium">
+                                    <option value="">Select</option>
+                                    @foreach($mediums as $medium)
+                                        <option value="{{$medium->medium_id}}">{{$medium->medium_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dataToAppend">
+                    </div>
+                    {{--<div class="row bg-light mt-2">--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="form-label">In English</label>--}}
+                                {{--<div class="row gutters-xs">--}}
+                                    {{--<div class="col">--}}
+                                        {{--<input type="text" class="form-control" placeholder="Search for...">--}}
+                                    {{--</div>--}}
+                                    {{--<span class="col-auto">--}}
+                            {{--<button class="btn btn-primary" type="button"><i class="fa fa-trash"></i></button>--}}
+                        {{--</span>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-12">--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label class="form-label">In Urdu</label>--}}
+                                {{--<div class="row gutters-xs">--}}
+                                    {{--<div class="col">--}}
+                                        {{--<input type="text" class="form-control urdu" style="width: 95%;" placeholder="یہاں لکھیں...">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+
+                </div>
+
+
+                <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-primary">Save Question</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row" style="display: none;" id="mid">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label for="">Ur</label>
+                <textarea name=""  id="" class="form-control te"></textarea>
+            </div>
+        </div>
+    </div>
+@endsection
+@push('style')
+    {{--<script src="https://wiris.net/demo/plugins/app/WIRISplugins.js?viewer=image"></script>--}}
+    @include('editor.my-editor');
+@endpush
+@push('script')
+    <script>
+
+        $(document).ready(function () {
+            $('#userTable').DataTable({
+
+            });
+            $(document).on('change', '.tp', function (e) {
+                e.preventDefault();
+                $('#dataToAppend').html(null);
+                $('#mediums').prop('selectedIndex',0);
+            });
+            $(document).on('change', '#chapters', function (e) {
+                e.preventDefault();
+                var url = '{{route('chapter-priority','')}}' + '/'+$(this).val();
+                $('#dataToAppend').html(null);
+                $('#mediums').prop('selectedIndex',0);
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function (data) {
+                        var option = '<option>Select</option>';
+                        $.each(data.types, function (key, val) {
+                            option += "<option value='" + val.priority_id + "'>" + val.priority_name + "</option>";
+                        });
+                        $('#priorities').html(option);
+
+                    }
+                });
+            });
+
+          function repopulate(medium,type) {
+              var url='{{route('partial-fields',['',''])}}'+'/'+type+'/'+medium;
+              $.ajax({
+                  type:'GET',
+                  url:url,
+                  data:null,
+                  // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                  success:function(data){
+                      if(window.tinymce){
+                          $(window.tinymce.editors).each(function(idx, p) {
+                              window.tinymce.remove(idx);
+                          });
+                      }
+                      $('#dataToAppend').html(null);
+                      $('#dataToAppend').html(data);
+                      // var html = $("#mid").html();
+                      // $("#dataToAppend").append(html);
+                  },
+                  error: function (reject) {
+                  }
+              });
+          }
+            $(document).on('change', '#mediums', function (e) {
+               // e.preventDefault();
+                var lang=$(this).val();
+                var questionType=$('#types').val();
+                var url='{{route('partial-fields',['',''])}}'+'/'+questionType+'/'+lang;
+                if(questionType!=null)
+                {
+                    $.ajax({
+                        type:'GET',
+                        url:url,
+                        data:null,
+                        // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success:function(data){
+                            $('#dataToAppend').html(null);
+                            $('#dataToAppend').html(data);
+                            // var html = $("#mid").html();
+                            // $("#dataToAppend").append(html);
+                        },
+                        error: function (reject) {
+                        }
+                    });
+                }else{
+                    notification('error','Select question type.');
+                }
+            });
+
+            $(document).on('submit', '#questionForm', function (e) {
+                e.preventDefault();
+                var data=$(this).serialize();
+                var url=$(this).attr('action');
+                $.ajax({
+                    type:'Post',
+                    url:url,
+                    data:data,
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success:function(data){
+                        if(data.status)
+                        {
+                            // $('#mediums').prop('selectedIndex',0);
+                           var medium=$('#mediums').val();
+                           var type=$('#types').val();
+                            //tinyMCE.activeEditor.setContent("");
+
+                            // tinyMCE.activeEditor.setContent('');
+                           //  $('textarea').each(function(k, v) {
+                           //      tinyMCE.get(k).setContent('');
+                           //  });
+                           $('#dataToAppend').html(null);
+
+                            $('.input').val('');
+                            notification('success',data.message);
+                            repopulate(medium,type);
+                        }else{
+                            notification('error',data.message)
+                        }
+                    },
+                    error: function (reject) {
+                        if( reject.status === 422 ) {
+                            var errors = $.parseJSON(reject.responseText);
+                            $.each(errors, function (key, val) {
+                                if(val.class!=null)
+                                {
+                                    notification('error',val.class);
+                                }else if (val.course!=null)
+                                {
+                                    notification('error',val.course);
+                                }
+                                else if (val.subject!=null)
+                                {
+                                    notification('error',val.subject);
+                                }
+                                else if (val.chapter!=null)
+                                {
+                                    notification('error',val.chapter);
+                                }
+                                else if (val.number!=null)
+                                {
+                                    notification('error',val.number);
+                                }
+                                else if (val.topic!=null)
+                                {
+                                    notification('error',val.topic);
+                                }
+
+                            });
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.searchBtn', function (e) {
+                e.preventDefault();
+                var url='{{route('classes-by-course','')}}'+'/'+$('#boards').val();
+                $.ajax({
+                    type:'GET',
+                    url:url,
+                    success:function(data){
+
+                        if(data.status==true)
+                        {
+                            $('#boardData').html(data.classes);
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.remove', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type:'GET',
+                    url:$(this).attr('href'),
+                    success:function(data){
+                        if(data.status==true)
+                        {
+                            notification('success',data.msg);
+                            $('#boardData').html(data.classes);
+
+                        }else if (data.status==false)
+                        {
+                            notification('error',data.msg);
+                            $('#boardData').html(data.classes);
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.edit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type:'GET',
+                    url:$(this).attr('href'),
+                    success:function(data){
+                        $('#editForm').html(data.class);
+                        $('#classModal').modal('show');
+
+                    }
+                });
+            });
+
+            $(document).on('click', '#editClassBtn', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:$('#editForm').attr('action'),
+                    data:$('#editForm').serialize(),
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success:function(data){
+                        if(data.status==true)
+                        {
+                            notification('success',data.msg);
+                            $('#classModal').modal('hide');
+                            $('#boardData').html(data.classes);
+
+                        }else if (data.status==false)
+                        {
+                            notification('error',data.msg);
+                            $('#classModal').modal('hide');
+                            $('#boardData').html(data.classes);
+                        }
+                    },
+                    error: function (reject) {
+                        if( reject.status === 422 ) {
+                            var errors = $.parseJSON(reject.responseText);
+                            $.each(errors, function (key, val) {
+                                notification('error',val.name)
+                            });
+                        }
+                    }
+                });
+            });
+
+
+        })
+    </script>
+@endpush
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+
+            $('#questionForm').validate({
+                rules: {
+                    course: {
+                        required: true,
+                    },
+                    class: {
+                        required: true,
+                    },
+                    subject: {
+                        required: true,
+                    },
+                    topic: {
+                        required: true,
+                    },
+                    q_type: {
+                        required: true,
+                    },
+                    chapter: {
+                        required: true,
+                    },
+                    priority: {
+                        required: true,
+                    },
+                    medium: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    course: "course name is required",
+                    class: "class name is required",
+                    subject: "subject name is required",
+                    topic: "topic name is required",
+                    chapter: "chapter name is required",
+                    q_type: "question type is required",
+                    priority: "question priority is required",
+                    medium: "question medium is required"
+                }
+            });
+
+        });
+    </script>
+@endpush

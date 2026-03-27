@@ -1,0 +1,221 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Bank\extra;
+
+use App\Http\Controllers\Controller;
+use App\Models\Admin\Course;
+use App\Models\Admin\Question\Bank\extra\Assign;
+use App\Models\Admin\Question\Bank\extra\Prerequisite;
+use Illuminate\Http\Request;
+
+class PreController extends Controller
+{
+    public function getList()
+    {
+        return view('admin.question.extra.prerequisite-list',
+                         [
+                             'types'=>Prerequisite::questionTypes(),
+                             'priorities'=>Prerequisite::priorities(),
+                             'mediums'=>Prerequisite::mediums(),
+                             'courses'=>Course::courses(),
+                         ]
+        );
+    }
+
+    public function edit($typeId,$type)
+    {
+         if ($type=='priority')
+         {
+            return $this->info(Prerequisite::priorityById($typeId),'Question Priority','priority');
+         }else if ($type=='medium')
+         {
+            return $this->info(Prerequisite::mediumById($typeId),'Medium','medium');
+         }else if ($type=='type')
+         {
+            return $this->info(Prerequisite::typeById($typeId),'Question Type','type');
+         }
+    }
+    public function update(Request $req)
+    {
+        $type=$req->type;
+        $id=$req->id;
+        if ($type=='priority')
+        {
+            $data=['priority_name'=>$req->name];
+            $status=Prerequisite::editPriority($id,$data);
+            return $this->partialView(Prerequisite::priorities(),'priority',$status);
+        }else if ($type=='medium')
+        {
+            $data=['medium_name'=>$req->name];
+            $status=Prerequisite::editMedium($id,$data);
+            return $this->partialView(Prerequisite::mediums(),'medium',$status);
+        }else if ($type=='type')
+        {
+            $data=['english'=>$req->name,'urdu'=>$req->urdu];
+            $status=Prerequisite::editType($id,$data);
+            return $this->partialView(Prerequisite::questionTypes(),'type',$status);
+        }
+    }
+    //Showing List Of Medium,priorities and Questions Types of specific Chapter
+    public function assignList(Request $req)
+    {
+        if ($req->type=='priority')
+        {
+            return $this->assignView(Prerequisite::priorities(),$req->all(),'priority');
+        }else if ($req->type=='medium')
+        {
+            return $this->assignView(Prerequisite::mediums(),$req->all(),'medium');
+        }else if ($req->type=='type')
+        {
+            return $this->assignView(Prerequisite::questionTypes(),$req->all(),'type');
+        }
+    }
+
+    // SAVE Chapter Priority,and questions to chapter
+    public function assign(Request $req)
+    {
+        if ($req->type=='priority')
+        {
+            $types=$this->removeAssignment($req,'priority');
+            foreach ($types as $type)
+            {
+                $data=$this->dataToSave($type,$req,'priorityId','priority');
+                Assign::addType($data);
+            }
+        }else if ($req->type=='medium')
+        {
+            return $this->assignView(Prerequisite::mediums(),$req->all(),'medium');
+        }else if ($req->type=='type')
+        {
+            $types=$this->removeAssignment($req,'type');
+            foreach ($types as $type)
+            {
+                $data=$this->dataToSave($type,$req,'typeId','questionType');
+               Assign::addType($data);
+            }
+        }
+    }
+
+    // Return the Database fields To be saved into DB
+    private function dataToSave($typeId,Request $req,$column,$type)
+    {
+        return [
+            'courseId'=>$req->course,
+            'classId'=>$req->class,
+            'subjectId'=>$req->subject,
+            'chapterId'=>$req->chapter,
+             $column=>$typeId,
+            'type'=>$type
+        ];
+    }
+
+   // Remove Question Type or Priority Which is not assign again (update)
+    private function removeAssignment(Request $req,$type)
+    {
+        $assignment=$req->types;
+        if ($type=='priority')
+        {
+            //QUESTION TYPES exist already
+            $alreadyExist=array();
+            //Get All Priority Assign To Chapter
+           $questions=(Assign::priorityByChapter($req->chapter))->pluck('priorityId')->toArray();
+            $count=0;
+
+            //Filter Priority That Are Already Exist
+            foreach ($assignment as $item)
+            {
+                if (Assign::existPriority($item,$req->course,$req->class,$req->subject,$req->chapter))
+                {
+                    $alreadyExist[$count]=$item;
+                    unset($assignment[$count]);
+                }
+                $count=$count+1;
+            }
+            //Delete Priority Which Not Assign Again
+            $toBeRemove=array_diff($questions,$alreadyExist);
+            foreach ($toBeRemove as $question)
+            {
+                Assign::removeByPriority($req->course,$req->class,$req->subject,$req->chapter,'priority',$question);
+            }
+        }else if ($type=='type')
+        {
+            //QUESTION TYPES exist already
+             $alreadyExist=array();
+             $questions=(Assign::QTbyChapter($req->chapter))->pluck('typeId')->toArray();
+             $count=0;
+
+             //Filter Questions That Are Already Exist
+             foreach ($assignment as $item)
+             {
+                 if (Assign::existTypes($item,$req->course,$req->class,$req->subject,$req->chapter))
+                 {
+                     $alreadyExist[$count]=$item;
+                     unset($assignment[$count]);
+                 }
+                 $count=$count+1;
+             }
+             //Delete Question Which Not Assign Again
+            $toBeRemove=array_diff($questions,$alreadyExist);
+            foreach ($toBeRemove as $question)
+            {
+                Assign::removeByType($req->course,$req->class,$req->subject,$req->chapter,'questionType',$question);
+            }
+        }
+
+        return $assignment;
+
+    }
+
+
+
+
+   // Return Partial View Of Assigned questions types or priorities
+    public function partialView($data,$type,$status)
+    {
+        $html=view('admin.question.extra.prerequisite-partial',
+            [
+                'data'=>$data,
+                'type'=>$type
+            ]
+        )->render();
+
+        if ($status)
+        {
+            return response()->json(['data'=>$html,'status'=>true,'type'=>$type]);
+        }else{
+            return response()->json(['data'=>$html,'status'=>false,'type'=>$type]);
+        }
+    }
+
+    public function assignView($data,$toAssign,$type)
+    {
+        return view('admin.question.extra.assign-partial',
+            [
+                'types'=>$data,
+                'type'=>$type,
+                'search'=>$toAssign
+            ]
+        )->render();
+
+    }
+
+    private function info($data,$title,$type)
+    {
+        return response()->json(
+            [
+                'data'=>$data,
+                'title'=>$title,
+                'type'=>$type
+            ]
+        );
+    }
+    // Getting All Questions And Priorities  are assigned To a Specific Chapter
+    public function questionTypes($chapterId)
+    {
+        return response()->json(['status'=>true,'types'=>Assign::QTbyChapter($chapterId)]);
+    }
+    public function chPriorities($chapterId)
+    {
+        return response()->json(['status'=>true,'types'=>Assign::priorityByChapter($chapterId)]);
+    }
+}

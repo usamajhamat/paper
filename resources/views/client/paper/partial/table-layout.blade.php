@@ -1,0 +1,270 @@
+@php
+$schoolName = strip_tags($school->school_name); // Remove HTML tags
+$schoolName = preg_replace('/Powered by Froala Editor/', '', $schoolName); // Remove "Powered by Froala Editor"
+$schoolName = html_entity_decode($schoolName); // Convert HTML entities to their respective characters
+
+$schoolName = trim($schoolName);
+
+@endphp
+
+<table style="width: 100%; font-size: 10pt; font-weight: bold;" class="layout-1">
+
+    <tbody>
+
+    <tr>
+
+        <td colspan="5">
+
+            <p style="padding:0px; margin:0px; text-align:center; color:#000000; font-size:20pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$schoolName}}
+
+            </p>
+
+            <p style="padding:0px; margin:0px; margin-top:-5px; text-align:center; color:#a86060; font-size:10pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->address}} PH: {{$school->phone}}
+
+            </p>
+
+        </td>
+
+        
+
+    </tr>
+
+    <tr>
+
+        
+
+    </tr>
+
+    <tr>
+
+        <td style="border:2px solid #000; padding-left:5px;">STUDENT NAME</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"></td>
+
+        <td rowspan="4" style="width:30%; text-align:center; vertical-align:central; border-bottom:1px solid #fff; border-top:1px solid #fff; margin-top:3px;"> <img src="{{url('images'.'/'.$school->logo)}}" width="80" height="80"> </td>
+
+        <td style="border:2px solid #000; padding-left:5px;">CLASS</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> {{$paper->class_name}} </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="border:2px solid #000; padding-left:5px;">PAPER CODE</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->paperId}}"></td>
+
+        <td style="border:2px solid #000; padding-left:5px;">SUBJECT</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> {{$paper->subject_name}} </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="border:2px solid #000; padding-left:5px;">TIME ALLOWED</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->time}}"></td>
+
+        <td style="border:2px solid #000; padding-left:5px;">TOTAL MARKS</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->marks}}"></td>
+
+    </tr>
+
+  
+
+    <tr>
+
+       
+
+        <td style="border:2px solid #000; padding-left:5px;">Paper Date</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"> <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{date("d-m-Y", strtotime($paper->schedule_date))}}"></td>
+
+        <td style="border:2px solid #000; padding-left:5px;" > Paper Type</td>
+
+        <td style="border:2px solid #000; padding-left:5px;"><input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" ></td>
+
+    </tr>
+
+   
+
+    </tbody></table>
+
+
+
+<table width="100%" cellpadding="3" style="font-size:10pt; border-bottom:2px solid #000; font-weight:bold; display:none;" class="layout-2">
+
+    <tbody><tr>
+
+        <td rowspan="4" style="padding-right:10px;"> <img src="{{url('images'.'/'.$school->logo)}}" width="80" height="80"> </td>
+
+        <td colspan="3">
+
+            <p style="padding:0px; margin:0px; text-align:center; color:#000000; font-size:20pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->school_name}}
+
+            </p>
+
+            <p style="padding:0px; margin:0px; text-align:center; margin-top:-5px; color:#a86060; font-size:10pt; transform:scaleY( 1 ); font-family:'Times New Roman';">
+
+                {{$school->address}} PH: {{$school->phone}}
+
+            </p>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="width:28%; background-color:darkslategray; color:#fff; text-align:center; font-size:12pt; border-radius:0px 100px 100px 0px;">CLASS: {{$paper->class_name}} </td>
+
+        <td style="width:28%; border-top:2px solid #000000; border-bottom:2px solid #000000; text-align:center; font-size:12pt;"> {{$paper->subject_name}} </td>
+
+        <td style="width:28%; background-color:darkslategray; color:#fff; text-align:center; font-size:12pt; border-radius:100px 0px 0px 100px;">TOTAL MARKS: {{$paper->marks}} </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center;">STUDENT NAME: .....................</td>
+
+        <td style="text-align:center;">PAPER CODE: <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->paperId}}"></td>
+
+        <td style="text-align:center;">TIME: <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->time}} "></td>
+
+       
+
+    </tr>
+
+    <tr>
+
+         <td colspan="4" style="text-align:center;">Paper Date: <input type="text" style="border:none; font-weight:bold;" value="{{$paper->schedule_date}} "></td>
+
+         
+
+    </tr>
+
+ 
+
+    </tbody></table>
+
+
+
+<table style="width:100%; font-size:10pt; border-bottom:2px solid #000; font-weight:bold; display:none;" class="layout-3">
+
+    <tbody><tr>
+
+        <td rowspan="4" style="padding-right:10px;"> <img src="{{url('images'.'/'.$school->logo)}}" width="80" height="80"> </td>
+
+        <td colspan="3">
+
+            <p style="padding:0px; margin:0px; text-align:center; color:#000000; font-size:20pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->address}}
+
+            </p>
+
+            <p style="padding:0px; margin:0px; text-align:center; margin-top:-5px; color:#a86060; font-size:10pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->address}} PH:  {{$school->phone}}
+
+            </p>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td>STUDENT NAME: .....................</td>
+
+        <td>CLASS: {{$paper->class_name}}</td>
+
+        <td>SUBJECT: {{$paper->subject_name}}</td>
+
+    </tr>
+
+    <tr>
+
+        <td>PAPER CODE: <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->paper_code}}"></td>
+
+        <td>TIME ALLOWED: <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->time}} "></td>
+
+        <td>TOTAL MARKS: <input type="text" style="width:100px; margin:0; border:none; font-weight:bold;" value="{{$paper->marks}}"></td>
+
+        
+
+    </tr>
+
+    <tr>
+
+        <td>Paper Date: <input type="text" style="border:none; font-weight:bold;" value="{{$paper->schedule_date}} "></td>
+
+    </tr>
+
+    </tbody></table>
+
+
+
+<table style="width:100%; font-size:10pt; border-bottom:2px solid #000; font-weight:bold; text-align:center; display:none;" class="layout-4">
+
+    <tbody><tr>
+
+        <td rowspan="2" style="padding-right:10px;"> <img src="{{url('images'.'/'.$school->logo)}}" width="80" height="80"> </td>
+
+        <td colspan="2">
+
+            <p style="padding:0px; margin:0px; text-align:center; color:#000000; font-size:20pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->school_name}}
+
+            </p>
+
+            <p style="padding:0px; margin:0px; text-align:center; margin-top:-5px; color:#a86060; font-size:10pt; transform:scaleY(1); font-family:'Times New Roman';">
+
+                {{$school->address}}, Lahore PH:  {{$school->phone}}
+
+            </p>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td style="text-align:center;">CLASS: {{$paper->class_name}}</td>
+
+        <td style="text-align:center;">SUBJECT: {{$paper->subject_name}}</td>
+
+    </tr>
+
+    </tbody></table>
+
+    <table style="width:100%;display:none;" id="syllabustable">
+
+    <tr>
+
+        <td colspan="2" tyle="width:100%; height:20px;">
+            <div style="border:2px solid black; padding:5px;" class="editable_content" contenteditable="true">
+            @foreach($chapters as $chapter)
+                ({{$chapter}})
+                @endforeach
+            </div>
+        </td>
+
+        
+
+    </tr>
+
+    </table>
+
+    

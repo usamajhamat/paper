@@ -1,0 +1,65 @@
+@if($type=='type')
+    @foreach($types as $type1)
+        @php
+            $urdu=$type1->urdu!=null? $type1->urdu:'';
+            $isExist=\App\Models\Admin\Question\Bank\extra\Assign::getByType($type1->question_id,$search['course'],$search['class'],$search['subject'],$search['chapter']);
+        @endphp
+        <div class="col-md-4">
+            <div class="form-group m-0">
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        @if($isExist)
+                            <input type="checkbox" class="custom-control-input" name="types[]" value="{{$type1->question_id}}" checked>
+                            <span class="custom-control-label">{{$type1->english.'  '}}<small>{{ $urdu}}</small></span>
+                            @else
+                            <input type="checkbox" class="custom-control-input" name="types[]" value="{{$type1->question_id}}">
+                            <span class="custom-control-label">{{$type1->english.'  '}}<small>{{ $urdu}}</small></span>
+                        @endif
+                    </label>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @elseif($type=='priority')
+    @foreach($types as $type1)
+        @php
+            $isExist=\App\Models\Admin\Question\Bank\extra\Assign::getByPriority($type1->priority_id,$search['course'],$search['class'],$search['subject'],$search['chapter']);
+        @endphp
+        <div class="col-md-1">
+            <div class="form-group m-0">
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        @if($isExist)
+                            <input type="checkbox" class="custom-control-input" name="types[]" value="{{$type1->priority_id}}" checked>
+                            <span class="custom-control-label">{{$type1->priority_name}}</span>
+                        @else
+                            <input type="checkbox" class="custom-control-input" name="types[]" value="{{$type1->priority_id}}">
+                            <span class="custom-control-label">{{$type1->priority_name}}</span>
+                        @endif
+                    </label>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @elseif($type=='medium')
+    @php
+            $medium=\App\Models\Admin\Question\Bank\extra\Assign::getByMedium(
+                $search['chapter']);
+    @endphp
+        
+    @foreach($types as $type1)
+        
+        <div class="col-md-2" style="margin-top:20px;">
+            <div class="form-group m-0">
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        
+                            <input type="radio" {{ $medium->medium == $type1->medium_id?'checked':''}} class="" name="medium" value="{{$type1->medium_id}}">
+                            <span class="">{{$type1->medium_name}}</span>
+                        
+                    </label>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    @endif
