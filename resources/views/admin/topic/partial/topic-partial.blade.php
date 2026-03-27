@@ -1,7 +1,7 @@
 
-<script src="{{asset('public/admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/datatable.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/datatable.js')}}"></script>
 <div class="table-responsive">
     <table id="example" class="table table-hover card-table  table-vcenter table-outline text-nowrap w-100">
         <thead class="bg-light">

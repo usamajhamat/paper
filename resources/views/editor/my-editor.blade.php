@@ -3,12 +3,12 @@
 {{--<script src="https://cdn.tiny.cloud/1/p5te0wbrc3rkauufn0ullcbce3lspfekdsbkh8fs6l7qkg74/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
 {{--<script src="https://wiris.net/demo/plugins/app/WIRISplugins.js?viewer=image"></script>--}}
 {{--<script src="https://www.rosariosis.org/demonstration/assets/js/tinymce/tinymce.min.js?v=4.9.8"></script>--}}
-<script src="{{asset('public/tinymce/tinymce.min.js?v=4.9.8')}}"></script>
+<script src="{{asset('tinymce/tinymce.min.js?v=4.9.8')}}"></script>
 {{--<script src="http://cdn.tinymce.com/4/tinymce.min.js"></script>--}}
 
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.2/tinymce.min.js"></script>--}}
 
-{{--<script src="{{asset('public/admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>--}}
 {{--<script src="https://cdn.jsdelivr.net/npm/tinymce@4.9.8/jquery.tinymce.min.js"></script>--}}
 {{--<script src="https://cdn.jsdelivr.net/npm/tinymce@4.9.8/tinymce.min.js"></script>--}}
 
