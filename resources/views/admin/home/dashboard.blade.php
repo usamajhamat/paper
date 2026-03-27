@@ -95,28 +95,28 @@
 @endsection
 @push('style')
 <!-- c3.js Charts Plugin -->
-<link href="{{asset('public/admin/assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
+<link href="{{asset('admin/assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
 <!-- Morris.js Charts Plugin -->
-<link href="{{asset('public/admin/assets/plugins/morris/morris.css')}}" rel="stylesheet" />
+<link href="{{asset('admin/assets/plugins/morris/morris.css')}}" rel="stylesheet" />
 @endpush
 @push('script')
-<script src="{{asset('public/admin/assets/plugins/flot/jquery.flot.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/flot/jquery.flot.fillbetween.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/flot/jquery.flot.pie.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/flot/jquery.flot.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/flot/jquery.flot.fillbetween.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/flot/jquery.flot.pie.js')}}"></script>
 <!-- Echarts Js-->
-<script src="{{asset('public/admin/assets/plugins/echarts/echarts.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/index1.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/echarts/echarts.js')}}"></script>
+<script src="{{asset('admin/assets/js/index1.js')}}"></script>
 <!--othercharts js-->
-<script src="{{asset('public/admin/assets/js/othercharts.js')}}"></script>
+<script src="{{asset('admin/assets/js/othercharts.js')}}"></script>
 <!-- Charts Plugin -->
-<script src="{{asset('public/admin/assets/plugins/chart/Chart.bundle.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/chart/utils.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/chart/Chart.bundle.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/chart/utils.js')}}"></script>
 <!--Jquery.knob js-->
-<script src="{{asset('public/admin/assets/plugins/othercharts/jquery.knob.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/othercharts/jquery.knob.js')}}"></script>
 <!--Amcharts Charts Plugin -->
-<script src="{{asset('public/admin/assets/plugins/am-chart/amcharts.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/am-chart/serial.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/am-chart/amcharts.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/am-chart/serial.js')}}"></script>
 <!-- peitychart -->
-<script src="{{asset('public/admin/assets/plugins/peitychart/jquery.peity.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/peitychart/peitychart.init.js')}}'"></script>
+<script src="{{asset('admin/assets/plugins/peitychart/jquery.peity.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/peitychart/peitychart.init.js')}}'"></script>
 @endpush

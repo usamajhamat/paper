@@ -1,11 +1,11 @@
-{{--<link href="{{asset('public/admin/assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />--}}
+{{--<link href="{{asset('admin/assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />--}}
 {{--<!---Accordion Js-->--}}
-{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordion.min.js')}}"></script>--}}
-{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordions.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/plugins/accordion/accordion.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/plugins/accordion/accordions.js')}}"></script>--}}
 
-<script src="{{asset('public/admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/datatable.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/datatable.js')}}"></script>
 @if(count($questions)==0)
     <h1>Sorry! No Record Is Found</h1>
 @endif
