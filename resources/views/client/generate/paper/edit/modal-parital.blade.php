@@ -1,9 +1,9 @@
-<link href="{{asset('public/admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('admin/assets/plugins/select2/select2.min.css')}}" rel="stylesheet" />
 
 <!--Select2 js -->
-<script src="{{asset('public/admin/assets/plugins/select2/select2.full.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/select2/select2.full.min.js')}}"></script>
 <!-- Inline js -->
-<script src="{{asset('public/admin/assets/js/select2.js')}}"></script>
+<script src="{{asset('admin/assets/js/select2.js')}}"></script>
 <form id="generateForm">
     <input type="hidden" name="form" value="edit">
     <input type="hidden" name="panel" value="{{$panel}}">

@@ -1,7 +1,7 @@
 <style>
     @font-face {
         font-family: 'NooriNastaleeq';
-        src: url('{{asset("public/assets/urdufonts/JameelNooriNastaleeqRegular.ttf")}}') format('truetype');
+        src: url('{{asset("assets/urdufonts/JameelNooriNastaleeqRegular.ttf")}}') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
@@ -21,9 +21,9 @@
             <marquee scrollamount="3" direction="right">
                 @foreach($notifications as $notification)
                     <span id="notification-text">
-                        {{ $notification->notification_name }}<img src="{{asset('public/assets/img/notify_ico.png')}}" style="margin-left:2%;" width="20px"height="20px" >
+                        {{ $notification->notification_name }}<img src="{{asset('assets/img/notify_ico.png')}}" style="margin-left:2%;" width="20px"height="20px" >
                     </span>
-                    {{--<img src="{{asset('public/assets/img/notify_ico.png')}}" width="20px"height="20px" >--}}
+                    {{--<img src="{{asset('assets/img/notify_ico.png')}}" width="20px"height="20px" >--}}
                 @endforeach
             </marquee>
         </div>

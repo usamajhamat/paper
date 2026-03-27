@@ -12,22 +12,22 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     <!-- Title -->
     <title>School</title>
-    <link rel="stylesheet" href="{{asset('public/admin/assets/fonts/fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/fonts/fonts/font-awesome.min.css')}}">
 
     <!-- Font Family -->
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
 
     <!-- Dashboard Css -->
-    <link href="{{asset('public/admin/assets/css/dashboard.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/css/dashboard.css')}}" rel="stylesheet" />
 
 
     <!---Font icons-->
-    <link href="assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+    <link href="{{ asset('admin/assets/plugins/iconfonts/plugin.css') }}" rel="stylesheet" />
 
 </head>
 <body class="login-img">
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col mx-auto">
                     <div class="text-center mb-6">
-                        <img src="assets/images/brand/logo.png" class="" alt="">
+                        <img src="{{ asset('admin/assets/images/brand/logo.png') }}" class="" alt="">
                     </div>
 
                     <form action="{{route('user-auth')}}" method="post">
@@ -97,8 +97,8 @@
 
 
 <!-- Dashboard js -->
-<script src="{{asset('public/admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
 
 </body>
 </html>

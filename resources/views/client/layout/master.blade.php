@@ -26,43 +26,43 @@
 
     <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css?display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('public/admin/assets/fonts/fonts/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/fonts/fonts/font-awesome.min.css')}}">
 
     <!-- Font Family-->
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,700" rel="stylesheet">
     <!-- Dashboard Css -->
-    <link href="{{asset('public/admin/assets/css/dashboard.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/css/dashboard.css')}}" rel="stylesheet" />
     <!-- Accordion Css -->
-    <link href="{{asset('public/admin/assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/accordion/accordion.css')}}" rel="stylesheet" />
     <!-- Tabs Style -->
-    <link href="{{asset('public/admin/assets/plugins/tabs/style.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/tabs/style.css')}}" rel="stylesheet" />
 
     <!-- Date Picker Plugin -->
-    <link href="{{asset('public/admin/assets/plugins/date-picker/spectrum.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/date-picker/spectrum.css')}}" rel="stylesheet" />
 
     <!-- Notifications  Css -->
-    <link href="{{asset('public/admin/assets/plugins/notify/css/jquery.growl.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/admin/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/notify/css/jquery.growl.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet" />
 
     <!-- c3.js Charts Plugin -->
-    <link href="{{asset('public/admin/assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/charts-c3/c3-chart.css')}}" rel="stylesheet" />
     <!-- Data table css -->
-    <link href="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 
     <!-- Custom scroll bar css-->
-    <link href="{{asset('public/admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.css')}}" rel="stylesheet" />
 
     <!-- Sidemenu Css -->
-    <link href="{{asset('public/admin/assets/plugins/toggle-sidebar/sidemenu.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/toggle-sidebar/sidemenu.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{asset('public/admin/assets/css/jquery-confirm.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/css/jquery-confirm.min.css')}}">
     <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css?display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/notonaskharabic.css?display=swap" rel="stylesheet">
     <!---Font icons-->
-    <link href="{{asset('public/admin/assets/plugins/iconfonts/plugin.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/plugins/iconfonts/plugin.css')}}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-    <link href="{{asset('public/assets/urdufonts/JameelNooriNastaleeqRegular.ttf')}}">
+    <link href="{{asset('assets/urdufonts/JameelNooriNastaleeqRegular.ttf')}}">
 
     @stack('css12',false)
     <style>
@@ -247,38 +247,38 @@
 </div>
 
 <!-- Dashboard js -->
-<script src="{{asset('public/admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/jquery.sparkline.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/selectize.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/jquery.tablesorter.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/vendors/circle-progress.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/rating/jquery.rating-stars.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/jquery.sparkline.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/selectize.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/jquery.tablesorter.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/vendors/circle-progress.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/rating/jquery.rating-stars.js')}}"></script>
 
-<script src="{{asset('public/admin/assets/js/jquery.validate.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/additional-methods.js')}}"></script>
+<script src="{{asset('admin/assets/js/jquery.validate.js')}}"></script>
+<script src="{{asset('admin/assets/js/additional-methods.js')}}"></script>
 <!-- Fullside-menu Js-->
-<script src="{{asset('public/admin/assets/plugins/toggle-sidebar/sidemenu.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/toggle-sidebar/sidemenu.js')}}"></script>
 
-<script src="{{asset('public/admin/assets/js/printThis.js')}}"></script>
+<script src="{{asset('admin/assets/js/printThis.js')}}"></script>
 <!---Accordion Js-->
-{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordion.min.js')}}"></script>--}}
-{{--<script src="{{asset('public/admin/assets/plugins/accordion/accordions.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/plugins/accordion/accordion.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/plugins/accordion/accordions.js')}}"></script>--}}
 
 <!-- Data tables -->
-<script src="{{asset('public/admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/datatable/datatable.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatable/datatable.js')}}"></script>
 
 <!-- Notifications js -->
-<script src="{{asset('public/admin/assets/plugins/notify/js/rainbow.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/notify/js/sample.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/notify/js/jquery.growl.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/notify/js/notifIt.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/notify/js/rainbow.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/notify/js/sample.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/notify/js/jquery.growl.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/notify/js/notifIt.js')}}"></script>
 
 <!-- Datepicker js -->
-<script src="{{asset('public/admin/assets/plugins/date-picker/spectrum.js')}}"></script>
-<script src="{{asset('public/admin/assets/plugins/date-picker/jquery-ui.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/date-picker/spectrum.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/date-picker/jquery-ui.js')}}"></script>
 
 
 
@@ -299,14 +299,14 @@
   });
   </script>
 <!-- Custom scroll bar Js-->
-<script src="{{asset('public/admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
-<script src="{{asset('public/admin/assets/js/jquery-confirm.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/scroll-bar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{asset('admin/assets/js/jquery-confirm.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 
 
 <!-- Custom Js-->
-<script src="{{asset('public/admin/assets/js/custom.js')}}"></script>
+<script src="{{asset('admin/assets/js/custom.js')}}"></script>
 @stack('script',false)
 <script>
     $("#tst").modal('show');

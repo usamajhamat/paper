@@ -4,8 +4,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Print Paper</title>
-        <link href="{{asset('public/client/bootstrap.css')}}" rel="stylesheet">
-        <link href="{{asset('public/client/PrintPaper.css')}}" rel="stylesheet">
+        <link href="{{asset('client/bootstrap.css')}}" rel="stylesheet">
+        <link href="{{asset('client/PrintPaper.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
        <style>
            .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -177,7 +177,7 @@
                 </div>
 
                 <div style="display:none; text-align:center;" class="PrintBubbles">
-                    <img src="{{asset('public/client/Bubbles.jpg')}}" style="max-width:100%;">
+                    <img src="{{asset('client/Bubbles.jpg')}}" style="max-width:100%;">
                     <div style="clear:both; margin-bottom:10px;"></div>
                 </div>
                 <div class="">
@@ -202,7 +202,7 @@
                                 </div>
 
                                 <div style="display:none; text-align:center;" class="PrintBubbles">
-                                    <img src="{{asset('public/client/Bubbles.jpg')}}" style="max-width:100%;">
+                                    <img src="{{asset('client/Bubbles.jpg')}}" style="max-width:100%;">
                                     <div style="clear:both; margin-bottom:10px;"></div>
                                 </div>
                                 <div class="editable_content">
@@ -223,7 +223,7 @@
                                 </div>
 
                                 <div style="display:none; text-align:center;" class="PrintBubbles">
-                                    <img src="{{asset('public/client/Bubbles.jpg')}}" style="max-width:100%;">
+                                    <img src="{{asset('client/Bubbles.jpg')}}" style="max-width:100%;">
                                     <div style="clear:both; margin-bottom:10px;"></div>
                                 </div>
                                 <div class="editable_content">
@@ -268,7 +268,7 @@
         <section class="sheet padding-10mm">
             <div style="position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; Z-INDEX:-1; "><img src="{{url('images').'/'.$school->watermark}}" style="width:100%; height:100%" alt="Watermark"></div>
             <div class="col-md-12 text-center">
-                <img src="{{asset('public/client/BubblesSheet.png')}}" class="img-responsive col-md-12">
+                <img src="{{asset('client/BubblesSheet.png')}}" class="img-responsive col-md-12">
             </div>
         </section>
     </div>
@@ -276,9 +276,9 @@
 </div>
 
 
-<script src="{{asset('public/client/jquery-1.10.2.min.js')}}"></script>
-<script src="{{asset('public/client/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('public/client/jquery.romannumerals.js')}}"></script>
+<script src="{{asset('client/jquery-1.10.2.min.js')}}"></script>
+<script src="{{asset('client/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('client/jquery.romannumerals.js')}}"></script>
 <script>
     function content_editable() {
         var value = $('.editable_content').attr('contenteditable');

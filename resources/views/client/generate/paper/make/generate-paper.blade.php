@@ -603,10 +603,10 @@
 
 @endif
 
-{{--<script src="{{asset('public/admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/js/vendors/jquery-3.2.1.min.js')}}"></script>--}}
 
 {{--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>--}}
-{{--<script src="{{asset('public/client/jquery.romannumerals.js')}}"></script>--}}
+{{--<script src="{{asset('client/jquery.romannumerals.js')}}"></script>--}}
 
 {{--<script>--}}
     {{--$(document).ready(function () {--}}
